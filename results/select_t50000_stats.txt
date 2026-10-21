@@ -1,0 +1,24 @@
+selected_t50000: 355,802,277 samples from 989 shards, 52.4 GB parquet, 15.4 words/caption
+entries with deficit: 391,932; fully filled (sel>=d): 147,855; median fill 1.00; mean fill 0.99
+overfill (sel-d, entries with deficit): total 77.2M hits over 147,840 entries; hits on entries with NO deficit: 2747.0M
+after supplement: entries below t: 481,025 (before: 487,531); entries below t/2: 472,419 (before: 481,007)
+  flowers : 61 entry-classes; pool informative hits 4,259,938 -> +881,551 (21%)
+     artichoke                  c~ 29,191 d=20,537 avail~ 20,537 selected=20,421
+     water lily                 c~ 16,624 d=19,397 avail~ 19,397 selected=19,353
+     carnation                  c~ 13,331 d=15,337 avail~ 15,337 selected=15,311
+     marigold                   c~ 15,178 d=14,331 avail~ 14,331 selected=14,312
+  pets    : 27 entry-classes; pool informative hits 603,943 -> +360,551 (60%)
+     Shiba Inu                  c~ 23,670 d=26,330 avail~ 36,345 selected=28,805
+     Pomeranian                 c~ 24,380 d=25,620 avail~ 25,893 selected=25,820
+     Basset Hound               c~ 25,108 d=24,892 avail~ 27,873 selected=26,247
+     Beagle                     c~ 17,772 d=22,913 avail~ 22,913 selected=22,921
+  food101 : 55 entry-classes; pool informative hits 2,736,338 -> +1,026,481 (38%)
+     oysters                    c~ 24,200 d=22,029 avail~ 22,029 selected=21,955
+     fried rice                 c~ 30,018 d=19,982 avail~ 21,738 selected=21,285
+     guacamole                  c~ 28,317 d=19,728 avail~ 19,728 selected=19,669
+     mussels                    c~ 23,283 d=19,688 avail~ 19,688 selected=19,594
+  sun397  : 196 entry-classes; pool informative hits 61,376,506 -> +22,935,288 (37%)
+     kitchenette                c~ 15,970 d=34,030 avail~ 51,945 selected=38,008
+     conference room            c~ 18,815 d=31,185 avail~ 44,951 selected=36,454
+     clothing store             c~ 20,314 d=29,686 avail~ 32,203 selected=31,572
+     fairway                    c~ 15,337 d=29,160 avail~ 29,160 selected=29,153

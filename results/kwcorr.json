@@ -1,0 +1,92 @@
+{
+ "per_dataset": {
+  "flowers": {
+   "n_classes": 95,
+   "spearman_ratio_vs_delta": -0.094,
+   "pearson_log2ratio_vs_delta": -0.012,
+   "mean_delta": -30.02,
+   "median_kw_ratio": 0.946,
+   "worst_classes": [
+    {
+     "class": "moon orchid",
+     "delta": -100.0,
+     "new_per_m": 0.41,
+     "metaclip_per_m": 0.0,
+     "ratio": 5.1
+    },
+    {
+     "class": "red ginger",
+     "delta": -100.0,
+     "new_per_m": 8.86,
+     "metaclip_per_m": 8.74,
+     "ratio": 1.014
+    },
+    {
+     "class": "gaura",
+     "delta": -100.0,
+     "new_per_m": 9.89,
+     "metaclip_per_m": 11.35,
+     "ratio": 0.872
+    },
+    {
+     "class": "azalea",
+     "delta": -100.0,
+     "new_per_m": 121.02,
+     "metaclip_per_m": 132.58,
+     "ratio": 0.913
+    },
+    {
+     "class": "lotus",
+     "delta": -100.0,
+     "new_per_m": 1169.2,
+     "metaclip_per_m": 1312.78,
+     "ratio": 0.891
+    },
+    {
+     "class": "bromelia",
+     "delta": -100.0,
+     "new_per_m": 1.85,
+     "metaclip_per_m": 1.53,
+     "ratio": 1.196
+    },
+    {
+     "class": "blackberry lily",
+     "delta": -100.0,
+     "new_per_m": 0.21,
+     "metaclip_per_m": 0.0,
+     "ratio": 3.1
+    },
+    {
+     "class": "wallflower",
+     "delta": -99.4,
+     "new_per_m": 33.6,
+     "metaclip_per_m": 39.97,
+     "ratio": 0.841
+    },
+    {
+     "class": "geranium",
+     "delta": -98.9,
+     "new_per_m": 110.71,
+     "metaclip_per_m": 118.17,
+     "ratio": 0.937
+    },
+    {
+     "class": "magnolia",
+     "delta": -97.7,
+     "new_per_m": 346.37,
+     "metaclip_per_m": 428.56,
+     "ratio": 0.808
+    }
+   ]
+  }
+ },
+ "pooled": {
+  "n_classes": 95,
+  "spearman_ratio_vs_delta": -0.094,
+  "pearson_log2ratio_vs_delta": -0.012
+ },
+ "runs": {
+  "new": "v3_eng_ep48",
+  "old": "v0old_ep39"
+ }
+}

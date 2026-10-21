@@ -1,0 +1,39 @@
+scanned 995/995 existing shards (scale x1.000)
+rows 12,799,001,169 | english 6,292,847,915 | pool 2,315,604,734 (~2.32B) | unused 3,977,243,181 (~3.98B) | kept candidates 2,616,111,836 (~2.62B)
+POOL alt-text:   informative 72.5%  placeholder 0.71%  short 17.0%  urlish 0.47%  dup 9.27%
+UNUSED alt-text: informative 65.8%  placeholder 4.39%  short 27.9%  urlish 0.41%  dup 1.47%
+
+t=50000: entries present in pool 405,712; entries with deficit 392,638; total deficit 541.1M entry-hits
+mean entries per candidate 4.03; expected accepted entry-hits (all shards) 541.1M -> ~134M samples (overlap-corrected estimate comes from balance_select)
+
+deficit as fraction of target (entries with deficit):
+  0.0-0.1:   1,292 entries, deficit      2.3M
+  0.1-0.5: 198,400 entries, deficit    306.0M
+  0.5-0.9: 178,842 entries, deficit    231.1M
+  0.9-1.0:  14,104 entries, deficit      1.8M
+
+benchmark classes that are MetaCLIP entries (pool informative hits est. -> target, deficit):
+  flowers: 61/102 classes are entries; pool inf hits ~4,313,241; total deficit 232,098
+     artichoke                    c~  29,531 avail~   20,540 T= 50,000 d= 20,469 p=1.00
+     water lily                   c~  16,814 avail~   19,465 T= 36,279 d= 19,465 p=1.00
+     carnation                    c~  13,529 avail~   15,407 T= 28,936 d= 15,407 p=1.00
+     marigold                     c~  15,360 avail~   14,387 T= 29,747 d= 14,387 p=1.00
+     daffodil                     c~  13,968 avail~   14,248 T= 28,216 d= 14,248 p=1.00
+  pets: 27/37 classes are entries; pool inf hits ~611,191; total deficit 259,368
+     Shiba Inu                    c~  23,925 avail~   36,544 T= 50,000 d= 26,075 p=0.71
+     Pomeranian                   c~  24,715 avail~   25,956 T= 50,000 d= 25,285 p=0.97
+     Basset Hound                 c~  25,377 avail~   28,007 T= 50,000 d= 24,623 p=0.88
+     Beagle                       c~  17,981 avail~   23,059 T= 41,040 d= 23,059 p=1.00
+     Bengal                       c~  25,497 avail~   18,481 T= 43,978 d= 18,481 p=1.00
+  food101: 55/101 classes are entries; pool inf hits ~2,769,870; total deficit 381,637
+     oysters                      c~  24,481 avail~   22,083 T= 46,564 d= 22,083 p=1.00
+     guacamole                    c~  28,666 avail~   19,772 T= 48,438 d= 19,772 p=1.00
+     mussels                      c~  23,529 avail~   19,705 T= 43,234 d= 19,705 p=1.00
+     fried rice                   c~  30,460 avail~   21,800 T= 50,000 d= 19,540 p=0.90
+     risotto                      c~  31,273 avail~   19,285 T= 50,000 d= 18,727 p=0.97
+  sun397: 196/397 classes are entries; pool inf hits ~62,145,391; total deficit 1,127,361
+     kitchenette                  c~  16,145 avail~   52,319 T= 50,000 d= 33,855 p=0.65
+     conference room              c~  19,005 avail~   45,221 T= 50,000 d= 30,995 p=0.69
+     clothing store               c~  20,618 avail~   32,407 T= 50,000 d= 29,382 p=0.91
+     fairway                      c~  15,479 avail~   29,326 T= 44,805 d= 29,326 p=1.00
+     cafeteria                    c~  20,525 avail~   28,302 T= 48,827 d= 28,302 p=1.00

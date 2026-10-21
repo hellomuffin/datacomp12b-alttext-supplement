@@ -1,0 +1,39 @@
+scanned 995/995 existing shards (scale x1.000)
+rows 12,799,001,169 | english 6,292,847,915 | pool 2,315,604,734 (~2.32B) | unused 3,977,243,181 (~3.98B) | kept candidates 2,616,111,836 (~2.62B)
+POOL alt-text:   informative 72.5%  placeholder 0.71%  short 17.0%  urlish 0.47%  dup 9.27%
+UNUSED alt-text: informative 65.8%  placeholder 4.39%  short 27.9%  urlish 0.41%  dup 1.47%
+
+t=100000: entries present in pool 405,712; entries with deficit 397,185; total deficit 816.5M entry-hits
+mean entries per candidate 4.03; expected accepted entry-hits (all shards) 816.5M -> ~203M samples (overlap-corrected estimate comes from balance_select)
+
+deficit as fraction of target (entries with deficit):
+  0.0-0.1:     983 entries, deficit      2.9M
+  0.1-0.5: 200,082 entries, deficit    435.8M
+  0.5-0.9: 182,013 entries, deficit    375.5M
+  0.9-1.0:  14,107 entries, deficit      2.2M
+
+benchmark classes that are MetaCLIP entries (pool informative hits est. -> target, deficit):
+  flowers: 61/102 classes are entries; pool inf hits ~4,313,241; total deficit 317,291
+     hibiscus                     c~  40,570 avail~   53,274 T= 93,844 d= 53,274 p=1.00
+     poinsettia                   c~  58,722 avail~   57,745 T=100,000 d= 41,278 p=0.71
+     artichoke                    c~  29,531 avail~   20,540 T= 50,071 d= 20,540 p=1.00
+     water lily                   c~  16,814 avail~   19,465 T= 36,279 d= 19,465 p=1.00
+     carnation                    c~  13,529 avail~   15,407 T= 28,936 d= 15,407 p=1.00
+  pets: 27/37 classes are entries; pool inf hits ~611,191; total deficit 468,962
+     Yorkshire Terrier            c~  40,369 avail~   57,707 T= 98,076 d= 57,707 p=1.00
+     Persian                      c~  33,404 avail~   47,092 T= 80,496 d= 47,092 p=1.00
+     Shiba Inu                    c~  23,925 avail~   36,544 T= 60,469 d= 36,544 p=1.00
+     Chihuahua                    c~  37,742 avail~   36,406 T= 74,148 d= 36,406 p=1.00
+     Boxer                        c~  65,570 avail~   87,684 T=100,000 d= 34,430 p=0.39
+  food101: 55/101 classes are entries; pool inf hits ~2,769,870; total deficit 617,567
+     pho                          c~  59,333 avail~   44,399 T=100,000 d= 40,667 p=0.92
+     waffles                      c~  41,237 avail~   39,285 T= 80,522 d= 39,285 p=1.00
+     donuts                       c~  61,285 avail~   75,813 T=100,000 d= 38,715 p=0.51
+     chocolate cake               c~  65,042 avail~   57,625 T=100,000 d= 34,958 p=0.61
+     dumplings                    c~  36,843 avail~   28,972 T= 65,815 d= 28,972 p=1.00
+  sun397: 196/397 classes are entries; pool inf hits ~62,145,391; total deficit 2,253,447
+     hotel room                   c~  38,566 avail~   64,726 T=100,000 d= 61,434 p=0.95
+     cockpit                      c~  45,336 avail~   57,833 T=100,000 d= 54,664 p=0.95
+     windmill                     c~  45,424 avail~   64,322 T=100,000 d= 54,576 p=0.85
+     pasture                      c~  46,837 avail~   54,613 T=100,000 d= 53,163 p=0.97
+     office building              c~  47,156 avail~   91,761 T=100,000 d= 52,844 p=0.58
