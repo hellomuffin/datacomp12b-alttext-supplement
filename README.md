@@ -135,6 +135,72 @@ captions. We therefore:
 | counts of the current pool measured on its *actual* uid set | the packed pool is the dense-caption selection (`dense_metaclip_v1/selected/t105521`, 2.32 B), not the older alt-text selections; using the wrong uid set mis-states both exclusion and deficit |
 | single pass over the metadata | pool counting, candidate filtering and tagging share one read of the 12.8 B-row dump |
 
+### 3.1 The selection algorithm, step by step
+
+**Objects.** *Entries* are MetaCLIP's 500 K metadata strings (WordNet synsets, Wikipedia titles,
+common n-grams — e.g. `shiba inu`, `dog`, `kitchenette`, `fried rice`); never benchmark class names.
+A caption *matches* entry *j* if the entry appears in it as a whole phrase; a typical informative
+caption matches ~4 entries (`"cute shiba inu dog sleeping on a sofa"` → {`shiba inu`, `dog`,
+`sleeping`, `sofa`}). *Informative* alt-text = ≥4 word tokens, not a placeholder, not URL-like,
+not a duplicate; only such captions are counted anywhere below.
+
+**Step 1 — count what the pool already has.** For every entry *j*: `c_j` = pool samples whose
+informative alt-text matches *j*; `a_j` = unused candidates (informative alt-text) matching *j*,
+i.e. how many more could be added.
+
+**Step 2 — how many more each entry needs.** With threshold *t* (50 k here):
+target `T_j = min(t, c_j + a_j)` ("bring *j* up to *t*, or to everything that exists"), deficit
+`d_j = T_j − c_j ≥ 0`. Head entries (`dog`, `photo`) have `c_j ≫ t` so `d_j = 0`.
+
+**Step 3 — deficits become per-entry acceptance probabilities.** `p_j = min(1, d_j / a_j)`.
+Taking each of the `a_j` candidates that mention *j* with probability `p_j` adds `p_j·a_j = d_j`
+of them in expectation — exactly the deficit. If `a_j ≤ d_j`, `p_j = 1`: take every one.
+
+**Step 4 — the per-candidate rule (MetaCLIP's balancing rule).**
+
+```
+for each candidate x with matched entries E(x):
+    accept x  if  ANY entry j in E(x) passes its own coin flip  (u_j < p_j)
+```
+
+A sample is kept if at least one concept it names is still needed. No shared state, so every
+shard runs independently.
+
+**Worked example (real numbers, t = 50 k).**
+
+| entry | pool `c_j` | available `a_j` | target `T_j` | deficit `d_j` | `p_j` |
+|---|---|---|---|---|---|
+| `shiba inu` | 23,670 | 36,345 | 50,000 | 26,330 | 0.72 |
+| `beagle` | 17,772 | 22,913 | 40,685 | 22,913 | **1.00** (take all) |
+| `dog` | millions | — | 50,000 | 0 | 0 |
+| `sofa` | > 50 k | — | 50,000 | 0 | 0 |
+
+* `"cute shiba inu dog sleeping on a sofa"` → {shiba inu 0.72, dog 0, sleeping 0, sofa 0} → accepted with probability 0.72.
+* `"beagle puppy at the park"` → {beagle 1.0, puppy 0, park 0} → always accepted.
+* `"dog sleeping on a sofa"` → all entries saturated → never accepted.
+
+The rule pulls in exactly the samples that carry under-represented concepts and ignores samples
+that only repeat what the pool already has.
+
+**Why "ANY", and its one side effect.** Tail concepts almost always co-occur with head concepts
+in the same caption; requiring *all* entries to pass would let head neighbours veto every tail
+sample. "Any" guarantees the tail gets filled. The side effect: the accepted `shiba inu` sample
+also adds a hit to `dog`, `sleeping`, `sofa`; over 358 M samples that is the 2.75 B "overfill"
+hits on entries that needed nothing, and why the natural selection is 358 M rather than the
+~134 M obtained by dividing total deficit by entries-per-caption. The pool itself was built with
+the same rule. A greedy set-cover variant (accept only if some entry's *remaining* deficit is
+> 0, then decrement) gives the same tail fill at roughly half the size.
+
+**The budget knob.** `--budget B` multiplies every `p_j` by one scalar λ, found by bisection so the
+expected accepted count equals B (λ = 0.365 for 150 M). It scales tail and head alike; to shrink
+while protecting the tail, prefer the set-cover variant.
+
+**Why this is principled.** The rule *is* MetaCLIP's `min(1, t/count)`, with *t* replaced by the
+remaining deficit so it adds to an existing pool instead of re-sampling from scratch; equalizing
+counts up to availability maximizes total concept utility under the empirically log-linear
+count→zero-shot-accuracy relation (water-filling); and the selection never sees benchmark class
+names, so the benchmark gains in §5 are a held-out consequence of balancing 500 K entries.
+
 **Matching.** Aho–Corasick over space-padded entries with MetaCLIP's `spacing()`, identical to
 `metaclip1/substr_matching_ahocorasick.py`; 111 k captions / s / process.
 
