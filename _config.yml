@@ -1,0 +1,8 @@
+title: Supplementing the English pretraining pool
+description: Why fine-grained zero-shot accuracy dropped (alt-text, not images) and a MetaCLIP-style supplement from unused DataComp-12B English
+theme: jekyll-theme-cayman
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+exclude: [supplement/__pycache__, diagnosis/__pycache__]
